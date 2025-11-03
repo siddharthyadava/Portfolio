@@ -5,9 +5,9 @@ const projects = [
     id: 1,
     title: "Indian Trade Mart",
     description: "A dynamic web platform designed for seamless product listing, management, and trade between businesses.",
-    image: "/projects/.png",
+    image: "/projects/ITM.png",
     tags: ["React", "Next.js", "SQL"],
-    demoUrl: "#",
+    demoUrl: "https://indiantrademart.com/",
     githubUrl: "#",
   },
   {
@@ -17,7 +17,7 @@ const projects = [
       "A Laravel-based platform that streamlines employee experience verification and record management.",
     image: "/projects/Eimager.png",
     tags: ["Laravel", "php", "SQL"],
-    demoUrl: "#",
+    demoUrl: "https://eimager.com/",
     githubUrl: "#",
   },
   {
@@ -25,10 +25,10 @@ const projects = [
     title: "Todo App",
     description:
       "A task management web app that helps users organize, track, and manage daily tasks efficiently.",
-    image: "/projects/Indian-Trade-Mart.png",
+    image: "/projects/Todo.png",
     tags: ["React", "Node.js", "MongoDb", ],
     demoUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/siddharthyadava/MERN-Todo-App-",
   },
 ];
 
