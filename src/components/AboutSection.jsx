@@ -30,7 +30,7 @@ export const AboutSection = () => {
               </a>
 
               <a
-                href="/Siddharth_Yadav's_Resume.pdf"
+                href="https://drive.google.com/file/d/1O9NezTTpspfwRPWos0cBO7Ik3No0sMXA/view?usp=drivesdk"
                 className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
               >
                 Download CV
