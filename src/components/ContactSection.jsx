@@ -22,31 +22,44 @@ export const ContactSection = () => {
 
     const form = e.target;
 
+    // ---------- 1) SEND MESSAGE TO YOU ----------
     emailjs
       .sendForm(
-        "service_825hh3c", // replace with your EmailJS Service ID
-        "template_p6lnghl", // replace with your EmailJS Template ID
+        "service_825hh3c", // Your EmailJS Service ID
+        "template_p6lnghl", // Your main template ID
         form,
-        "o29AX9JbbD_qkfM4v" // replace with your EmailJS Public Key
+        "o29AX9JbbD_qkfM4v" // Your public key
       )
-      .then(
-        () => {
-          toast({
-            title: "Message sent!",
-            description: "Thank you for your message. I'll get back to you soon.",
-          });
-          form.reset();
-          setIsSubmitting(false);
-        },
-        (error) => {
-          console.error("EmailJS Error:", error);
-          toast({
-            title: "Something went wrong",
-            description: "Please try again later.",
-          });
-          setIsSubmitting(false);
-        }
-      );
+      .then(() => {
+        // ---------- 2) SEND AUTO-REPLY TO USER ----------
+        emailjs.send(
+          "service_825hh3c",           // same service
+          "template_autoreply",        // NEW auto-reply template
+          {
+            from_name: form.from_name.value,
+            from_email: form.from_email.value,
+            subject: form.subject.value,
+            message: form.message.value,
+          },
+          "o29AX9JbbD_qkfM4v"
+        );
+
+        toast({
+          title: "Message sent!",
+          description: "Thank you for your message. I'll get back to you soon.",
+        });
+
+        form.reset();
+        setIsSubmitting(false);
+      })
+      .catch((error) => {
+        console.error("EmailJS Error:", error);
+        toast({
+          title: "Something went wrong",
+          description: "Please try again later.",
+        });
+        setIsSubmitting(false);
+      });
   };
 
   return (
@@ -63,7 +76,7 @@ export const ContactSection = () => {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Left Side */}
+          {/* LEFT SIDE */}
           <div className="space-y-8">
             <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
 
@@ -142,11 +155,13 @@ export const ContactSection = () => {
             </div>
           </div>
 
-          {/* Right Side (Form) */}
+          {/* RIGHT SIDE - FORM */}
           <div className="bg-card p-8 rounded-lg shadow-xs">
             <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
 
             <form className="space-y-6" onSubmit={handleSubmit}>
+              
+              {/* NAME */}
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
                   Your Name
@@ -157,10 +172,26 @@ export const ContactSection = () => {
                   name="from_name"
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
-                  placeholder="e.g., Siddharth Yadav"
+                  placeholder="e.g., John Doe"
                 />
               </div>
 
+              {/* SUBJECT FIELD — ADDED */}
+              <div>
+                <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  required
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
+                  placeholder="Project Inquiry, Collaboration, Feedback..."
+                />
+              </div>
+
+              {/* EMAIL */}
               <div>
                 <label htmlFor="email" className="block text-sm font-medium mb-2">
                   Your Email
@@ -175,6 +206,7 @@ export const ContactSection = () => {
                 />
               </div>
 
+              {/* MESSAGE */}
               <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-2">
                   Your Message
@@ -188,6 +220,7 @@ export const ContactSection = () => {
                 />
               </div>
 
+              {/* SUBMIT BUTTON */}
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -199,6 +232,7 @@ export const ContactSection = () => {
                 <Send size={16} />
               </button>
             </form>
+
           </div>
         </div>
       </div>
