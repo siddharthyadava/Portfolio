@@ -25,9 +25,9 @@ const projects = [
     title: "Todo App",
     description:
       "A task management web app that helps users organize, track, and manage daily tasks efficiently.",
-    image: "/projects/Todo.png",
+    image: "/projects/Todo.jpg",
     tags: ["React", "Node.js", "MongoDb", ],
-    demoUrl: "#",
+    demoUrl: "https://production-todo-app-frontend.vercel.app/",
     githubUrl: "https://github.com/siddharthyadava/MERN-Todo-App-",
   },
 ];
